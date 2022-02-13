@@ -11,21 +11,22 @@ function inventoryAllocator(order, warehouse) {
             let warehouseAmounts = warehouse[i].inventory[item];
 
             if(order[item]) {
-                if(warehouseAmounts >= order[item]) {
-                    result[item] = order[item];
+                if(warehouseAmounts  >= order[item]) {
+                    result[item]      = order[item];
                     warehouseAmounts -= order[item];
-                    order[item] = 0;
+                    order[item]       = 0;
                 }
                 else if(warehouseAmounts < order[item] && warehouseAmounts !== 0) {
                     result[item] 
                         ? result[item] += warehouseAmounts
-                        : result[item] = warehouseAmounts
+                        : result[item]  = warehouseAmounts
                     
-                    order[item] -= warehouseAmounts;
+                    order[item]      -= warehouseAmounts;
                     warehouseAmounts -= order[item];
                 }
             }
         });
+
         if(Object.keys(result).length) allocation.push({[warehouse[i].name]: result});
         remaining = Object.values(order).reduce((prev, curr) => prev + curr); 
     }

@@ -2,7 +2,6 @@ def inventoryAllocator(order, warehouse):
     allocation = []
 
     for i in range(len(warehouse)):
-        name = warehouse[i]['name']
         warehouseItems = list(warehouse[i]['inventory'].keys())
         result = {}
 
@@ -10,20 +9,21 @@ def inventoryAllocator(order, warehouse):
             if item in warehouseItems and order[item] != 0:
                 warehouseAmounts = warehouse[i]['inventory'][item]
 
-                if warehouseAmounts >= order[item]:
-                    result[item] = order[item]
+                if warehouseAmounts  >= order[item]:
+                    result[item]      = order[item]
                     warehouseAmounts -= order[item]
-                    order[item] = 0
+                    order[item]       = 0
+                    
                 elif warehouseAmounts < order[item] and warehouseAmounts != 0:
                     if item in result:
                         result[item] += warehouseAmounts
                     else:
                         result[item] = warehouseAmounts
 
-                    order[item] -= warehouseAmounts
+                    order[item]     -= warehouseAmounts
                     warehouseAmounts = 0
 
-        if len(result) != 0 : allocation.append({name: result})
+        if len(result) != 0 : allocation.append({warehouse[i]['name']: result})
     
     if sum(order.values()) != 0:
         print([])
