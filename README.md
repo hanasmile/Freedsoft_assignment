@@ -46,7 +46,7 @@ warehouse = [{ name: 'owd', inventory: { banana: 3 } }, { name: 'dm', inventory:
 
 ```
 
-- Order can't be shipped because there is not enough inventory
+- Order can't be shipped because of nothing enough inventory
 
 ```Javascript
 // input
