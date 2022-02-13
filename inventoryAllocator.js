@@ -7,7 +7,7 @@ function inventoryAllocator(order, warehouse) {
         let warehouseItems = Object.keys(warehouse[i].inventory);
         let result = {}
 
-        warehouseItems.forEach(item => {
+        warehouseItems.map(item => {
             let warehouseAmounts = warehouse[i].inventory[item];
 
             if(order[item]) {
@@ -28,7 +28,7 @@ function inventoryAllocator(order, warehouse) {
         });
 
         if(Object.keys(result).length) allocation.push({[warehouse[i].name]: result});
-        remaining = Object.values(order).reduce((prev, curr) => prev + curr); 
+        remaining = Object.values(order).reduce((acc, curr) => acc + curr); 
     }
     remaining 
         ? console.log([])
